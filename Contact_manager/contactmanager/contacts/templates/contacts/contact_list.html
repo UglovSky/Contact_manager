@@ -1,0 +1,29 @@
+{% extends 'contacts/layout.html' %}
+
+{% block title %}Список контактов{% endblock %}
+
+{% block content %}
+<a href="{% url 'contact_add' %}" class="button">Добавить новый контакт</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Создано:</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.created_at }}</td>
+                <td>
+                     <a href="{% url 'contact_delete' contact.id %}" class="button delete-button">Удалить эту запись</a>
+                </td>
+            </tr>
+            {% endfor %}
+{% endblock %}
